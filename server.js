@@ -15,10 +15,8 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
-// Borrar tabla vieja y crear la nueva limpia
 const createTableQuery = `
-  DROP TABLE IF EXISTS games;
-  CREATE TABLE games (
+  CREATE TABLE IF NOT EXISTS games (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
     genero VARCHAR(50),
