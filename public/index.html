@@ -4,73 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameVault</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <header>
-        <h1>🎮 GameVault</h1>
+    <div class="header">
+        <h1>GameVault</h1>
         <p>Tu colección personal de videojuegos</p>
-    </header>
+    </div>
 
-    <main>
+    <form id="game-form">
+        <h2>Agregar / Editar Videojuego</h2>
+        <input type="hidden" id="game-id"> 
+        
+        <input type="text" id="titulo" placeholder="Nombre del videojuego" required>
+        <input type="text" id="genero" placeholder="Género" required>
+        <input type="text" id="plataforma" placeholder="Plataforma" required>
+        <input type="url" id="imagen" placeholder="URL de la portada del juego (Enlace de internet)">
+        
+        <select id="estado">
+            <option value="Jugando">Jugando</option>
+            <option value="Terminado">Terminado</option>
+            <option value="Pendiente">Pendiente</option>
+        </select>
+        
+        <button type="submit" id="btn-submit">Guardar juego</button>
+        <button type="button" id="btn-cancel" style="display:none; background:#555;">Cancelar Edición</button>
+    </form>
 
-        <section class="formulario">
-
-            <h2>Agregar videojuego</h2>
-
-            <form id="gameForm">
-
-                <input
-                    type="text"
-                    id="nombre"
-                    placeholder="Nombre del videojuego"
-                    required
-                >
-
-                <input
-                    type="text"
-                    id="genero"
-                    placeholder="Género"
-                    required
-                >
-
-                <input
-                    type="text"
-                    id="plataforma"
-                    placeholder="Plataforma"
-                    required
-                >
-
-                <select id="estado">
-                    <option>Jugando</option>
-                    <option>Completado</option>
-                    <option>Pendiente</option>
-                </select>
-
-                <button type="submit">
-                    Guardar juego
-                </button>
-
-            </form>
-
-        </section>
-
-        <section>
-
-            <h2>Mi colección</h2>
-
-            <div id="gamesContainer">
-
-            </div>
-
-        </section>
-
-    </main>
+    <div class="collection-section">
+        <h2>Mi colección</h2>
+        <!-- Aquí se inyectarán las tarjetas mediante JavaScript -->
+        <div id="games-grid" class="grid-container"></div>
+    </div>
 
     <script src="app.js"></script>
-
 </body>
 </html>
