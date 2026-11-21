@@ -25,7 +25,13 @@ const createTableQuery = `
     imagen_url TEXT
   );
 `;
-pool.query(createTableQuery).catch(err => console.error(err));
+pool.query(createTableQuery)
+  .then(() => {
+    
+    pool.query('ALTER TABLE games ADD COLUMN IF NOT EXISTS genero VARCHAR(50);').catch(e => console.log(e));
+    pool.query('ALTER TABLE games ADD COLUMN IF NOT EXISTS imagen_url TEXT;').catch(e => console.log(e));
+  })
+  .catch(err => console.error(err));
 
 app.get('/api/games', async (req, res) => {
   try {
