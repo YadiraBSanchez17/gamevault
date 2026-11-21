@@ -15,8 +15,10 @@ const pool = new Pool({
   ssl: { rejectUnauthorized: false }
 });
 
+// Borrar tabla vieja y crear la nueva limpia
 const createTableQuery = `
-  CREATE TABLE IF NOT EXISTS games (
+  DROP TABLE IF EXISTS games;
+  CREATE TABLE games (
     id SERIAL PRIMARY KEY,
     titulo VARCHAR(100) NOT NULL,
     genero VARCHAR(50),
@@ -26,11 +28,7 @@ const createTableQuery = `
   );
 `;
 pool.query(createTableQuery)
-  .then(() => {
-    
-    pool.query('ALTER TABLE games ADD COLUMN IF NOT EXISTS genero VARCHAR(50);').catch(e => console.log(e));
-    pool.query('ALTER TABLE games ADD COLUMN IF NOT EXISTS imagen_url TEXT;').catch(e => console.log(e));
-  })
+  .then(() => console.log('Tabla reseteada y creada con éxito'))
   .catch(err => console.error(err));
 
 app.get('/api/games', async (req, res) => {
